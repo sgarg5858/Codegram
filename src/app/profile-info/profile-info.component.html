@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-12 offset-sm-0 col-xs-12 offset-xs-0 ">
+            <mat-card style="margin-top: 50px;background-color: white;width: 100%;display: flex;flex-direction: column;align-content: center;justify-content: center;align-items: center;">
+                <form  [formGroup]="profileInfoForm" style="display: flex;flex-direction: column;align-content: center;justify-content: center;align-items: center;">
+                    <mat-form-field style="width: 300px;">
+                        <input matInput placeholder="Job Title e.g Consultant" type="text" formControlName="jobTitle">
+                    </mat-form-field>
+                    <mat-form-field style="width: 300px;">
+                        <input matInput placeholder="Your bio  e.g Frontend Developer" type="text" formControlName="bio">
+                    </mat-form-field>
+                    <mat-expansion-panel (opened)="experiencepanelState = true"
+                       (closed)="experiencepanelState = false">
+                    <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Add  Experiences
+                    </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="experiences">
+                        <div *ngFor="let experienceControl of getExperienceControls();let i=index" [formGroupName]="i">
+                            <span style="display: flex;flex-direction: row;">
+                                <p style="margin-top: 10px;">Add {{i+1}} experience</p>
+                            <button  (click)="deleteExperience(i)" style="color: red;margin-left: 10px;" mat-icon-button><mat-icon>close</mat-icon></button>
+                            </span>
+                            <span>
+                                <mat-form-field>
+                                    <input matInput placeholder="Enter Company" type="text" formControlName="company">
+                                </mat-form-field>
+                                <mat-slide-toggle style="margin-left: 20px;" (input)="togglePresentThingForExperience(i)" color="primary" formControlName="present">Present</mat-slide-toggle>
+                            </span>
+                           
+                           <span style="display: flex;flex-direction: column;">
+                            <mat-form-field>
+                                <input matInput placeholder="Joining Date" type="date" formControlName="from">
+                            </mat-form-field>
+                            <mat-form-field style="margin-left: 5px;" >
+                                <input  [readonly]="experiencePresent[i]"  matInput placeholder="Till Date" type="date" formControlName="to">
+                            </mat-form-field>
+                           </span>
+
+                            <mat-form-field>
+                                <input matInput placeholder="Enter Job Title" type="text" formControlName="jobTitle">
+                            </mat-form-field>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button color="primary" type="button" mat-raised-button (click)="addExperience()">Add Experience</button>
+                    </div>
+                </mat-expansion-panel>
+
+                 <mat-expansion-panel style="margin-top: 10px;" (opened)="educationpanelState = true"
+                       (closed)="educationpanelState = false">
+                    <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Add  Educations
+                    </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div formArrayName="educations">
+                        <div *ngFor="let educationControl of getEducationControls();let i=index" [formGroupName]="i">
+                            <span style="display: flex;flex-direction: row;">
+                                <p style="margin-top: 10px;">Add {{i+1}} education</p>
+                            <button  (click)="deleteEducation(i)" style="color: red;margin-left: 10px;" mat-icon-button><mat-icon>close</mat-icon></button>
+                            </span>
+                            <span>
+                                <mat-form-field>
+                                    <input matInput placeholder="Enter School" type="text" formControlName="school">
+                                </mat-form-field>
+                                <mat-slide-toggle style="margin-left: 20px;" (input)="togglePresentThingForEducation(i)" color="primary" formControlName="present">Present</mat-slide-toggle>
+                            </span>
+                           
+                           <span style="display: flex;flex-direction: column;">
+                            <mat-form-field>
+                                <input matInput placeholder="Joining Date" type="date" formControlName="from">
+                            </mat-form-field>
+                            <mat-form-field style="margin-left: 5px;" >
+                                <input  [readonly]="educationPresent[i]"  matInput placeholder="Till Date" type="date" formControlName="to">
+                            </mat-form-field>
+                           </span>
+
+                            <mat-form-field>
+                                <input matInput placeholder="Enter Degree" type="text" formControlName="degree">
+                            </mat-form-field>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button color="primary" type="button" mat-raised-button (click)="addEducation()">Add Education</button>
+                    </div>
+                </mat-expansion-panel>
+                
+
+            <mat-expansion-panel style="margin-top: 10px;" (opened)="skillpanelState = true"
+                  (closed)="skillpanelState = false">
+               <mat-expansion-panel-header>
+               <mat-panel-title>
+                 Add  Skills
+               </mat-panel-title>
+               </mat-expansion-panel-header>
+               <div formArrayName="skills">
+                   <div *ngFor="let skillControl of getSkillControls();let i=index" [formGroupName]="i">
+                       <span style="display: flex;flex-direction: row;">
+                        <mat-form-field>
+                            <input matInput placeholder="Enter Skill Name" type="text" formControlName="skill">
+                        </mat-form-field>
+                       <button  (click)="deleteSkill(i)" style="color: red;margin-left: 10px;" mat-icon-button><mat-icon>close</mat-icon></button>
+                       </span>
+                   </div>
+               </div>
+
+               <div>
+                   <button color="primary" type="button" mat-raised-button (click)="addSkill()">Add Skill</button>
+               </div>
+           </mat-expansion-panel>
+                    <button style="margin-top: 10px;" mat-raised-button color="primary" (click)="onSave()">
+                        Save
+                    </button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

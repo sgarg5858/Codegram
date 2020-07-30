@@ -1,0 +1,10 @@
+
+button{
+    min-width: 20px;
+    max-width: 200px;
+    outline: none;
+}
+mat-expansion-panel{
+    min-width: 300px;
+    max-width: 80vw;
+}
