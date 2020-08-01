@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
-import {catchError} from 'rxjs/operators'
-import {throwError} from 'rxjs'
+import {catchError,tap} from 'rxjs/operators'
+import {throwError, Subject} from 'rxjs'
+import {User} from './user.model'
+
 export interface AuthResponse{
   idToken:string;
   email:string;
@@ -15,6 +17,8 @@ export interface AuthResponse{
   providedIn: 'root'
 })
 export class AuthService {
+
+  userDataChanged = new Subject<User>();
 
   constructor(private http:HttpClient) { }
 
@@ -33,8 +37,8 @@ export class AuthService {
             errorName="Something went wrong."
             return throwError(errorName);
           }
-       
-      })
+      }
+      )
     )
     ;
   }

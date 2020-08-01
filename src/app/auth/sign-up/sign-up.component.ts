@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, EmailValidator } from '@angular/forms';
 import {AuthService} from '../auth.service';
 import { Subscription } from 'rxjs';
+import { User } from '../user.model';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -32,8 +33,14 @@ export class SignUpComponent implements OnInit,OnDestroy {
    
     //  this.signupForm.reset();
    this.signupSubscription= this.authService.signUp(email,password).subscribe((response)=>{
-      console.log(response);
+      
       this.isLoading=false;
+
+      const expirationDate=new Date(new Date().getTime()+ (+response.expiresIn*1000));
+      const user= new User(response.email,response.localId,response.idToken,expirationDate);
+      
+      this.authService.userDataChanged.next(user);
+
     },(error)=>{
       this.isLoading=false;
       this.isError=true;
