@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, EmailValidator } from '@angular/forms';
 import {AuthService} from '../auth.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit,OnDestroy {
 
   signupForm:FormGroup;
   isLoading=false;
   isError=false;
   errorName="";
+  signupSubscription:Subscription;
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class SignUpComponent implements OnInit {
     const password=this.signupForm.value.password;
    
     //  this.signupForm.reset();
-    this.authService.signUp(email,password).subscribe((response)=>{
+   this.signupSubscription= this.authService.signUp(email,password).subscribe((response)=>{
       console.log(response);
       this.isLoading=false;
     },(error)=>{
@@ -37,6 +39,10 @@ export class SignUpComponent implements OnInit {
       this.isError=true;
      this.errorName=error;
     })
+  }
+  ngOnDestroy()
+  {
+    this.signupSubscription.unsubscribe();
   }
   
 }

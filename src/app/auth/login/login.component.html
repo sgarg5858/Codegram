@@ -10,7 +10,17 @@
                     <mat-form-field>
                         <input type="password" placeholder="Your Password" matInput formControlName="password">
                     </mat-form-field>
-                    <button style="width:100px;margin-bottom: 2vh;background-color:#1442bc;color: white" mat-raised-button >Login</button>
+                    <button 
+                    (click)="onLogin()"
+                    [class.spinner]="isLoading"
+                    [disabled]="isLoading || !loginForm.valid"
+                    style="width:100px;margin-bottom: 2vh;" 
+                    color="primary"
+                    mat-raised-button 
+                    >Login</button>
+                    <p *ngIf="isError" style="color: red;font-size: 16px;">
+                        {{errorName}}
+                    </p>
                 </form>
             </mat-card>
             <mat-card style="text-align: center;margin-top: 5vh;border-radius: 10px;">
