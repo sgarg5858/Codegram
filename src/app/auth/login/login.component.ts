@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit,OnDestroy {
     const password=this.loginForm.value.password;
     
     this.loginSubscription = this.authService.login(email,password).subscribe((response)=>{
-      
+
       this.isLoading=false;
       
       const expirationDate=new Date(new Date().getTime()+ (+response.expiresIn*1000));
@@ -50,7 +50,10 @@ export class LoginComponent implements OnInit,OnDestroy {
   }
   ngOnDestroy()
   {
-    this.loginSubscription.unsubscribe();
+    if(this.loginSubscription)
+    {
+      this.loginSubscription.unsubscribe();
+    }
   }
   
 

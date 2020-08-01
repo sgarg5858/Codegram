@@ -11,6 +11,7 @@
                         <input type="password" placeholder="Your Password" matInput formControlName="password">
                     </mat-form-field>
                     <button 
+                    type="button"
                     (click)="onLogin()"
                     [class.spinner]="isLoading"
                     [disabled]="isLoading || !loginForm.valid"
