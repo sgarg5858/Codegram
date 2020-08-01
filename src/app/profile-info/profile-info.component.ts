@@ -54,6 +54,10 @@ export class ProfileInfoComponent implements OnInit {
   {
     return  (<FormArray>this.profileInfoForm.controls.experiences).controls;
   }
+  deleteAllExperiences()
+  {
+    (<FormArray>this.profileInfoForm.controls.experiences).clear();
+  }
   addEducation()
   {
     (<FormArray>this.profileInfoForm.controls.educations).push(

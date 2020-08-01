@@ -1,0 +1,23 @@
+<div class="container-fluid" style="width: 100vw;height: 100vh;;background-color: #1442bc;">
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-10 offset-xs-1">
+            <mat-card style="text-align: center;margin-top: 20vh;border-radius: 10px;">
+                    <mat-card-title style="font-weight: 400;font-size: 32px;margin-top: 2vh;">Devconnect</mat-card-title>
+                <form [formGroup]="loginForm" style="margin-top: 30px;display: flex;flex-direction: column; align-items: center;">
+                    <mat-form-field>
+                        <input type="email" placeholder="Your Email" matInput formControlName="email">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input type="password" placeholder="Your Password" matInput formControlName="password">
+                    </mat-form-field>
+                    <button style="width:100px;margin-bottom: 2vh;background-color:#1442bc;color: white" mat-raised-button >Login</button>
+                </form>
+            </mat-card>
+            <mat-card style="text-align: center;margin-top: 5vh;border-radius: 10px;">
+                <p>Don't have an account? 
+                    <a routerLink="/signup" style="font-size: 16px;">Sign up</a>
+                </p>
+            </mat-card>
+        </div>
+    </div>
+</div>
