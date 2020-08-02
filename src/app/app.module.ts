@@ -23,7 +23,8 @@ import { AppComponent } from './app.component';
 import {ProfileInfoComponent} from './profile-info/profile-info.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
-import { CustomNavbarComponent } from './custom-navbar/custom-navbar.component'
+import { CustomNavbarComponent } from './custom-navbar/custom-navbar.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component'
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CustomNavbarComponent } from './custom-navbar/custom-navbar.component'
     ProfileInfoComponent,
     LoginComponent,
     SignUpComponent,
-    CustomNavbarComponent
+    CustomNavbarComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
