@@ -112,4 +112,10 @@ export class AuthService {
     },expirationDuration)
   }
 
+  sendEmailRequest(email)
+  {
+    const data={email,requestType:'PASSWORD_RESET'};
+   return this.http.post('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDrkErbnF5W5Q6bjg3IaKnph6hefBgL8rc',data);
+  }
+
 }
