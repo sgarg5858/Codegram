@@ -40,6 +40,12 @@ export class LoginComponent implements OnInit,OnDestroy {
       const user= new User(response.email,response.localId,response.idToken,expirationDate);
 
       this.authService.userDataChanged.next(user);
+      //for auto logout
+      this.authService.autoLogout(+response.expiresIn*1000);
+      
+      //for auto login so that when we reload the browser or page we can fetch
+      localStorage.setItem('userData',JSON.stringify(user));
+
       this.router.navigate(['/profile'])
       
     },(error)=>{
