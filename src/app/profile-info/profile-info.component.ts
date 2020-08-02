@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-
+import {ProfileService} from './profile.service';
 @Component({
   selector: 'app-profile-info',
   templateUrl: './profile-info.component.html',
@@ -8,7 +8,7 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 })
 export class ProfileInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private profileService:ProfileService) { }
   profileInfoForm:FormGroup;
   experiencepanelState = false;
   educationpanelState = false;
@@ -111,6 +111,7 @@ export class ProfileInfoComponent implements OnInit {
   onSave()
   {
     console.log(this.profileInfoForm.value);
+    this.profileService.saveProfileData(this.profileInfoForm.value);
   }
 
 }

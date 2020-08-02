@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
 import { User } from '../user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit,OnDestroy {
   isError=false;
   errorName="";
   loginSubscription:Subscription
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService,private router:Router) { }
 
   ngOnInit(): void {
     this.loginForm=new FormGroup({
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit,OnDestroy {
       const user= new User(response.email,response.localId,response.idToken,expirationDate);
 
       this.authService.userDataChanged.next(user);
-
+      this.router.navigate(['/profile'])
+      
     },(error)=>{
       console.log(error);
       this.isLoading=false;

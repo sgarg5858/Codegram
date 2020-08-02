@@ -1,0 +1,25 @@
+<div class="container-fluid" style="height: 10vh;width: 100vw;">
+    <div class="row" style="width: 100vw;">
+        <div class="col-12" style="width: 100vw;padding: 0;">
+            <mat-toolbar style="width: 100vw;background-color: #1442bc;height: 10vh;">
+                <a 
+                routerLink="" 
+                style="text-decoration: none;color: #96ffca;font-size: 24px;font-weight: 400;"
+                >
+                Devconnect</a>
+                <div style="width: 100%;display: flex;flex-direction: row-reverse;">
+                    <a 
+                    (click)="logout()"
+                    style="cursor: pointer;;text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
+                    *ngIf="isUserAuthenicated">Logout</a>
+                </div>
+              </mat-toolbar>
+        </div>
+    </div>
+</div>
+<mat-sidenav-container>
+    <mat-sidenav></mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

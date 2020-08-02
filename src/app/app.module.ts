@@ -17,26 +17,28 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {HttpClientModule} from '@angular/common/http' 
-
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { AppComponent } from './app.component';
 import {ProfileInfoComponent} from './profile-info/profile-info.component';
 import { LoginComponent } from './auth/login/login.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component'
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { CustomNavbarComponent } from './custom-navbar/custom-navbar.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileInfoComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    CustomNavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,BrowserAnimationsModule,
     FormsModule,ReactiveFormsModule,MatFormFieldModule,MatInputModule,MatIconModule,MatButtonModule,
     MatCardModule,MatDialogModule,MatExpansionModule,MatPaginatorModule,MatListModule,
-    MatSidenavModule,MatSlideToggleModule,MatSnackBarModule,HttpClientModule
+    MatSidenavModule,MatSlideToggleModule,MatSnackBarModule,HttpClientModule,MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
