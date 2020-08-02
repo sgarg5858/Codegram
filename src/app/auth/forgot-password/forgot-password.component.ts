@@ -13,6 +13,8 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(private authService:AuthService) { }
   resetForm:FormGroup;
   isLoading=false;
+  isError=false;
+  errorName="";
 
   ngOnInit(): void {
     this.resetForm=new FormGroup({
@@ -21,6 +23,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
   sendEmailRequest()
   {
+    this.isError=false;
     this.isLoading=true;
     console.log(this.resetForm.value);
     this.authService.sendEmailRequest(this.resetForm.value.email).subscribe((response)=>{
@@ -28,6 +31,15 @@ export class ForgotPasswordComponent implements OnInit {
       console.log(response)
     },(error)=>{
       this.isLoading=false;
+      this.isError=true;
+      if(error.error && error.error.error && error.error.error.message && error.error.error.message=="EMAIL_NOT_FOUND")
+      {
+        this.errorName="No account found with this email"
+      }
+      else{
+        this.errorName="Something went wrong";
+      }
+      console.log(error);
     })
   }
 
