@@ -1,3 +1,35 @@
 mat-sidenav-content,mat-sidenav,mat-sidenav-container{
   height: 90vh;
 }
+mat-sidenav{
+  width: 100vw;
+  background-color: #1442bc;
+  color: #96ffca;
+}
+.showMenu{
+  display: none;
+}
+.showLinks
+{
+  display: none;
+}
+@media screen and (min-width:300px) and (max-width:500px)
+{
+  .showMenu{
+    display: block;
+  }
+  .showLinks
+{
+  display: none;
+}
+}
+@media screen and (min-width:501px)
+{
+  .showMenu{
+    display: none;
+  }
+  .showLinks
+{
+  display: block;
+}
+}

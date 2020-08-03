@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
@@ -10,8 +10,10 @@ import { AuthService } from '../auth/auth.service';
 export class CustomNavbarComponent implements OnInit,OnDestroy {
 
   constructor(private authService:AuthService) { }
+  @ViewChild('sidenav')sidenav;
   isUserAuthenicated=false;
   userAuthenticationSubscription:Subscription;
+  menu=true;
 
   ngOnInit(): void {
     
@@ -21,7 +23,16 @@ export class CustomNavbarComponent implements OnInit,OnDestroy {
     
     })
   }
-
+  toggleButton()
+  {
+    this.sidenav.toggle();
+    this.menu=!this.menu;
+  }
+  closeNav()
+  {
+    this.sidenav.close();
+    this.menu=!this.menu;
+  }
   ngOnDestroy()
   {
     if(this.userAuthenticationSubscription)
@@ -32,5 +43,6 @@ export class CustomNavbarComponent implements OnInit,OnDestroy {
   logout()
   {
     this.authService.logout();
+    this.closeNav();
   }
 }

@@ -8,22 +8,53 @@
                 >
                 Devconnect</a>
                 <a 
+                class="showLinks"
                 routerLink="/profile" 
                 style="margin-left: 15vw;text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
+                *ngIf="isUserAuthenicated"
                 >
                 Profile</a>
                 <div style="width: 100%;display: flex;flex-direction: row-reverse;">
                     <a 
+                    class="showLinks"
                     (click)="logout()"
                     style="cursor: pointer;;text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
                     *ngIf="isUserAuthenicated">Logout</a>
                 </div>
+                <button class="showMenu" mat-icon-button style="outline: none;" (click)="toggleButton()"
+                *ngIf="menu && isUserAuthenicated">
+                    <mat-icon style="color: #96ffca;">menu</mat-icon>
+                </button>
+                <button class="showMenu" mat-icon-button style="outline: none;" (click)="toggleButton()"
+                *ngIf="!menu && isUserAuthenicated">
+                    <mat-icon style="color: #96ffca;">close</mat-icon>
+                </button>
               </mat-toolbar>
         </div>
     </div>
 </div>
 <mat-sidenav-container>
-    <mat-sidenav></mat-sidenav>
+    <mat-sidenav #sidenav position="end">
+        <ul style="display: flex;flex-direction: column;list-style: none;">
+            <li style="margin-top: 5vh;">
+                <a 
+                (click)="closeNav()"
+                routerLink="/profile" 
+                style="text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
+                *ngIf="isUserAuthenicated"
+                >
+                Profile</a>
+            </li>
+            <li style="margin-top: 5vh;">
+                <a 
+                (click)="logout()"
+                style="cursor: pointer;;text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
+                *ngIf="isUserAuthenicated"
+                >Logout</a>
+            
+            </li>
+        </ul>
+    </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>
     </mat-sidenav-content>
