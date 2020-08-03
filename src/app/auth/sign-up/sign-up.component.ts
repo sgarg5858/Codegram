@@ -16,12 +16,22 @@ export class SignUpComponent implements OnInit,OnDestroy {
   isError=false;
   errorName="";
   signupSubscription:Subscription;
+  isUserAuthenticated=false;
+  userInfoSubscription:Subscription;
+
   constructor(private authService:AuthService,private router:Router) { }
 
   ngOnInit(): void {
     this.signupForm=new FormGroup({
       email:new FormControl('',[Validators.required,Validators.email]),
       password:new FormControl('',[Validators.required,Validators.minLength(6)])
+    })
+    this.userInfoSubscription=this.authService.userDataChanged.subscribe((user)=>{
+      this.isUserAuthenticated = user !=null;
+      if(this.isUserAuthenticated)
+      {
+        this.router.navigate(['profile']);
+      }
     })
   }
   onSignUp()
@@ -60,6 +70,10 @@ export class SignUpComponent implements OnInit,OnDestroy {
     if(this.signupSubscription)
     {
       this.signupSubscription.unsubscribe();
+    }
+    if(this.userInfoSubscription)
+    {
+      this.userInfoSubscription.unsubscribe();
     }
   }
   

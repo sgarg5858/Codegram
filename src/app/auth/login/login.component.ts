@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit,OnDestroy {
   isLoading=false;
   isError=false;
   errorName="";
+  isUserAuthenticated=false;
+  userInfoSubscription:Subscription;
   loginSubscription:Subscription
   constructor(private authService:AuthService,private router:Router) { }
 
@@ -23,6 +25,13 @@ export class LoginComponent implements OnInit,OnDestroy {
     this.loginForm=new FormGroup({
       email:new FormControl('',[Validators.required,Validators.email]),
       password:new FormControl('',[Validators.required])
+    })
+    this.userInfoSubscription=this.authService.userDataChanged.subscribe((user)=>{
+      this.isUserAuthenticated = user !=null;
+      if(this.isUserAuthenticated)
+      {
+        this.router.navigate(['profile']);
+      }
     })
   }
   onLogin()
@@ -61,6 +70,10 @@ export class LoginComponent implements OnInit,OnDestroy {
     if(this.loginSubscription)
     {
       this.loginSubscription.unsubscribe();
+    }
+    if(this.userInfoSubscription)
+    {
+      this.userInfoSubscription.unsubscribe();
     }
   }
   
