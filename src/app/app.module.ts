@@ -24,8 +24,10 @@ import {ProfileInfoComponent} from './profile-info/profile-info.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { CustomNavbarComponent } from './custom-navbar/custom-navbar.component';
-import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component'
-
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { ProfilesComponent } from './profiles/profiles.component';
+import { HomeComponent } from './home/home.component'
+import {AvatarModule} from 'ngx-avatar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,14 +35,17 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
     LoginComponent,
     SignUpComponent,
     CustomNavbarComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ProfilesComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,BrowserAnimationsModule,
     FormsModule,ReactiveFormsModule,MatFormFieldModule,MatInputModule,MatIconModule,MatButtonModule,
     MatCardModule,MatDialogModule,MatExpansionModule,MatPaginatorModule,MatListModule,
-    MatSidenavModule,MatSlideToggleModule,MatSnackBarModule,HttpClientModule,MatToolbarModule
+    MatSidenavModule,MatSlideToggleModule,MatSnackBarModule,HttpClientModule,MatToolbarModule,
+    AvatarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

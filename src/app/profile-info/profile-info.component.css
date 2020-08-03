@@ -5,6 +5,5 @@ button{
     outline: none;
 }
 mat-expansion-panel{
-    min-width: 300px;
-    max-width: 80vw;
+    width: 250px;
 }

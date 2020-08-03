@@ -11,7 +11,7 @@ export class CustomNavbarComponent implements OnInit,OnDestroy {
 
   constructor(private authService:AuthService) { }
   @ViewChild('sidenav')sidenav;
-  isUserAuthenicated=false;
+  isUserAuthenticated=false;
   userAuthenticationSubscription:Subscription;
   menu=true;
 
@@ -19,7 +19,7 @@ export class CustomNavbarComponent implements OnInit,OnDestroy {
     
     this.userAuthenticationSubscription=this.authService.userDataChanged.subscribe((userData)=>{
       
-      userData?this.isUserAuthenicated=true:this.isUserAuthenicated=false;
+      userData?this.isUserAuthenticated=true:this.isUserAuthenticated=false;
     
     })
   }

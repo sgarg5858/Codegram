@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import {ProfileService} from './profile.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-profile-info',
   templateUrl: './profile-info.component.html',
@@ -8,7 +9,7 @@ import {ProfileService} from './profile.service';
 })
 export class ProfileInfoComponent implements OnInit {
 
-  constructor(private profileService:ProfileService) { }
+  constructor(private profileService:ProfileService,private router:Router) { }
   profileInfoForm:FormGroup;
   experiencepanelState = false;
   educationpanelState = false;
@@ -17,8 +18,11 @@ export class ProfileInfoComponent implements OnInit {
   educationPresent=[];
   ngOnInit(): void {
     this.profileInfoForm=new FormGroup({
+      name:new FormControl('',[Validators.required]),
+      location:new FormControl('',[Validators.required]),
+      githubName:new FormControl('',[Validators.required]),
+      email:new FormControl((JSON.parse(localStorage.getItem('userData')).email)),
       jobTitle:new FormControl('',Validators.required),
-      bio:new FormControl('',Validators.required),
       experiences: new FormArray([]),
       educations:new FormArray([]),
       skills:new FormArray([])
@@ -112,6 +116,7 @@ export class ProfileInfoComponent implements OnInit {
   {
     console.log(this.profileInfoForm.value);
     this.profileService.saveProfileData(this.profileInfoForm.value);
+
   }
 
 }

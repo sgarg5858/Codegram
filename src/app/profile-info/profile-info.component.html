@@ -3,13 +3,21 @@
         <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-12 offset-sm-0 col-xs-12 offset-xs-0 ">
             <mat-card style="margin-top: 50px;background-color: white;width: 100%;display: flex;flex-direction: column;align-content: center;justify-content: center;align-items: center;">
                 <form  [formGroup]="profileInfoForm" style="display: flex;flex-direction: column;align-content: center;justify-content: center;align-items: center;">
-                    <mat-form-field style="width: 300px;">
+                    <mat-form-field style="width: 250px;">
+                        <input matInput placeholder="Enter your name" type="text" formControlName="name">
+                    </mat-form-field>
+                    <mat-form-field style="width: 250px;margin-top:1vh">
+                        <input matInput placeholder="Enter your github username" type="text" formControlName="githubName">
+                        <mat-hint>We will use your github username to get profile picture</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field style="width: 250px;margin-top:1vh">
+                        <input matInput placeholder="Your Location" placeholder="e.g Pune,India" type="text" formControlName="location">
+                    </mat-form-field>
+                    <mat-form-field style="width: 250px;margin-top: 1vh;">
                         <input matInput placeholder="Job Title e.g Consultant" type="text" formControlName="jobTitle">
                     </mat-form-field>
-                    <mat-form-field style="width: 300px;">
-                        <input matInput placeholder="Your bio  e.g Frontend Developer" type="text" formControlName="bio">
-                    </mat-form-field>
-                    <mat-expansion-panel (opened)="experiencepanelState = true"
+
+                    <mat-expansion-panel style="margin-top: 1vh;" (opened)="experiencepanelState = true"
                        (closed)="experiencepanelState = false">
                     <mat-expansion-panel-header>
                     <mat-panel-title>

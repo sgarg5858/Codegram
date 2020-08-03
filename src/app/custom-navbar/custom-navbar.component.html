@@ -4,29 +4,36 @@
             <mat-toolbar style="width: 100vw;background-color: #1442bc;height: 10vh;">
                 <a 
                 routerLink="" 
-                style="text-decoration: none;color: #96ffca;font-size: 24px;font-weight: 400;"
+                style="text-decoration: none;color: #96ffca;font-size: 28px;font-weight: 400;"
                 >
                 Devconnect</a>
                 <a 
                 class="showLinks"
                 routerLink="/profile" 
                 style="margin-left: 15vw;text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
-                *ngIf="isUserAuthenicated"
+                *ngIf="isUserAuthenticated"
                 >
                 Profile</a>
+                <a 
+                class="showLinks"
+                routerLink="/community" 
+                style="margin-left: 4vw;text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
+                *ngIf="isUserAuthenticated"
+                >
+                Community</a>
                 <div style="width: 100%;display: flex;flex-direction: row-reverse;">
                     <a 
                     class="showLinks"
                     (click)="logout()"
                     style="cursor: pointer;;text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
-                    *ngIf="isUserAuthenicated">Logout</a>
+                    *ngIf="isUserAuthenticated">Logout</a>
                 </div>
                 <button class="showMenu" mat-icon-button style="outline: none;" (click)="toggleButton()"
-                *ngIf="menu && isUserAuthenicated">
+                *ngIf="menu && isUserAuthenticated">
                     <mat-icon style="color: #96ffca;">menu</mat-icon>
                 </button>
                 <button class="showMenu" mat-icon-button style="outline: none;" (click)="toggleButton()"
-                *ngIf="!menu && isUserAuthenicated">
+                *ngIf="!menu && isUserAuthenticated">
                     <mat-icon style="color: #96ffca;">close</mat-icon>
                 </button>
               </mat-toolbar>
@@ -35,21 +42,31 @@
 </div>
 <mat-sidenav-container>
     <mat-sidenav #sidenav position="end">
-        <ul style="display: flex;flex-direction: column;list-style: none;">
+        <ul style="display: flex;flex-direction: column;list-style: none;padding-left:16px;">
             <li style="margin-top: 5vh;">
                 <a 
                 (click)="closeNav()"
                 routerLink="/profile" 
                 style="text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
-                *ngIf="isUserAuthenicated"
+                *ngIf="isUserAuthenticated"
                 >
                 Profile</a>
             </li>
             <li style="margin-top: 5vh;">
                 <a 
+                (click)="closeNav()"
+                routerLink="/community" 
+                style="text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
+                *ngIf="isUserAuthenticated"
+                >
+                Community
+            </a>
+            </li>
+            <li style="margin-top: 5vh;">
+                <a 
                 (click)="logout()"
                 style="cursor: pointer;;text-decoration: none;color: #96ffca;font-size: 20px;font-weight: 400;"
-                *ngIf="isUserAuthenicated"
+                *ngIf="isUserAuthenticated"
                 >Logout</a>
             
             </li>
