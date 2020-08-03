@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import {ProfileService} from './profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CustomSnackbarComponent } from '../custom-snackbar/custom-snackbar.component';
 @Component({
   selector: 'app-profile-info',
   templateUrl: './profile-info.component.html',
@@ -10,7 +12,13 @@ import { Subscription } from 'rxjs';
 })
 export class ProfileInfoComponent implements OnInit,OnDestroy {
 
-  constructor(private profileService:ProfileService,private router:Router,private route:ActivatedRoute) { }
+  constructor(
+    private profileService:ProfileService,
+    private router:Router,
+    private route:ActivatedRoute,
+    private snackbar:MatSnackBar
+    )
+     { }
   profileInfoForm:FormGroup;
   experiencepanelState = false;
   educationpanelState = false;
@@ -221,6 +229,10 @@ export class ProfileInfoComponent implements OnInit,OnDestroy {
      this.updateLoading=false;
       console.log(profiles);
       this.router.navigate(['profile']);
+      this.snackbar.openFromComponent(CustomSnackbarComponent,{
+        data:'Profile updated successfully.',
+        duration:2000
+      })
     },(error)=>{
       this.updateLoading=false;
       this.updateError=true;

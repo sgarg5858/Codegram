@@ -28,6 +28,7 @@ import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.
 import { ProfilesComponent } from './profiles/profiles.component';
 import { HomeComponent } from './home/home.component'
 import {AvatarModule} from 'ngx-avatar';
+import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import {AvatarModule} from 'ngx-avatar';
     CustomNavbarComponent,
     ForgotPasswordComponent,
     ProfilesComponent,
-    HomeComponent
+    HomeComponent,
+    CustomSnackbarComponent
   ],
   imports: [
     BrowserModule,
