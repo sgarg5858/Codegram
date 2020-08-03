@@ -31,7 +31,7 @@ export class CustomNavbarComponent implements OnInit,OnDestroy {
   closeNav()
   {
     this.sidenav.close();
-    this.menu=!this.menu;
+     this.menu=true;
   }
   ngOnDestroy()
   {
@@ -42,6 +42,7 @@ export class CustomNavbarComponent implements OnInit,OnDestroy {
   }
   logout()
   {
+    this.menu=true;
     this.authService.logout();
     this.closeNav();
   }
