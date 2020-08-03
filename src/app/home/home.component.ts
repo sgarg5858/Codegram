@@ -15,17 +15,24 @@ export class HomeComponent implements OnInit,OnDestroy {
   profilesSubscription:Subscription;
   userProfile=null;
   userProfiles:any[];
+  isLoading=true;
+  isError=false
 
   ngOnInit(): void {
-
+    this.isLoading=true;
     this.userEmail=(JSON.parse(localStorage.getItem('userData'))).email;
     this.profileService.getProfiles();
     this.profilesSubscription=this.profileService.profilesChanged.subscribe((profiles)=>{
+
       this.userProfiles=Object.values(profiles);
       console.log(this.userProfiles);
       this.userProfile=this.userProfiles.filter(profile=>profile.email==this.userEmail)[0];
       console.log(this.userProfile);
+      this.isLoading=false;
 
+    },(error)=>{
+      this.isError=true;
+      this.isLoading=false;
     })
   }
 
