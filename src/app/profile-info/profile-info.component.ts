@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import {ProfileService} from './profile.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './profile-info.component.html',
   styleUrls: ['./profile-info.component.css']
 })
-export class ProfileInfoComponent implements OnInit {
+export class ProfileInfoComponent implements OnInit,OnDestroy {
 
   constructor(private profileService:ProfileService,private router:Router,private route:ActivatedRoute) { }
   profileInfoForm:FormGroup;
@@ -22,6 +22,7 @@ export class ProfileInfoComponent implements OnInit {
   userProfile:any;
   updateProfileSubscription:Subscription;
   updateLoading=false;
+  updateError=false;
 
   ngOnInit(): void {
 
@@ -214,6 +215,7 @@ export class ProfileInfoComponent implements OnInit {
       this.profileService.saveProfileData(this.profileInfoForm.value);
     }else
     {
+      this.updateError=false;
       this.updateLoading=true;
      this.updateProfileSubscription= this.profileService.updateProfile(this.profileInfoForm.value).subscribe((profiles)=>{
      this.updateLoading=false;
@@ -221,10 +223,22 @@ export class ProfileInfoComponent implements OnInit {
       this.router.navigate(['profile']);
     },(error)=>{
       this.updateLoading=false;
+      this.updateError=true;
       console.log(error);
     })
     }
 
+  }
+  ngOnDestroy()
+  {
+    if(this.updateProfileSubscription)
+    {
+      this.updateProfileSubscription.unsubscribe();
+    }
+    if(this.userProfileSubscription)
+    {
+      this.userProfileSubscription.unsubscribe();
+    }
   }
 
 }

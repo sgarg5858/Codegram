@@ -133,6 +133,8 @@
                     >
                     {{editMode? 'Update':'Save'}}
                     </button>
+                    <p style="color: red;margin-top: 5px;font-size: 16px;" *ngIf="updateError">
+                    Something went wrong!</p>
                 </form>
             </mat-card>
         </div>
