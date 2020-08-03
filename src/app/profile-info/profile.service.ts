@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import { AuthService } from '../auth/auth.service';
-import { Subscription, Subject } from 'rxjs';
+import { Subscription, Subject, BehaviorSubject } from 'rxjs';
 import { User } from '../auth/user.model';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
@@ -14,6 +14,7 @@ export class ProfileService {
   userSubscription:Subscription;
   profilesChanged=new Subject<any>();
   profiles:any;
+  userProfile=new BehaviorSubject<any>(null);
 
   saveProfileData(data)
   {

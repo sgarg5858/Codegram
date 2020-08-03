@@ -47,4 +47,9 @@ export class HomeComponent implements OnInit,OnDestroy {
       this.profilesSubscription.unsubscribe();
     }
   }
+  onEdit()
+  {
+    this.profileService.userProfile.next(this.userProfile);
+    this.router.navigate(['edit-profile']);
+  }
 }

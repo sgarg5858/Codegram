@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:'reset-password',component:ForgotPasswordComponent,pathMatch:'full'},
   {path:'profile',component:HomeComponent,pathMatch:'full',canActivate:[AuthGuardService]},
    {path:'create-profile',component:ProfileInfoComponent,pathMatch:'full',canActivate:[AuthGuardService]},
-   {path:'profile/edit',component:ProfileInfoComponent,pathMatch:'full',canActivate:[AuthGuardService]},
+   {path:'edit-profile',component:ProfileInfoComponent,pathMatch:'full',canActivate:[AuthGuardService]},
   {path:'community',component:ProfilesComponent,pathMatch:'full',canActivate:[AuthGuardService]},
   {path:'',redirectTo:'community',pathMatch:'full'},
   // {path:'**',redirectTo:'login'}
