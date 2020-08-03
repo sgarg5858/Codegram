@@ -231,7 +231,7 @@ export class ProfileInfoComponent implements OnInit,OnDestroy {
       this.router.navigate(['profile']);
       this.snackbar.openFromComponent(CustomSnackbarComponent,{
         data:'Profile updated successfully.',
-        duration:2000
+        duration:3000
       })
     },(error)=>{
       this.updateLoading=false;

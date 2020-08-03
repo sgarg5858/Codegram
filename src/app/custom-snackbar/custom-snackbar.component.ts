@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
+import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-custom-snackbar',
@@ -8,9 +8,15 @@ import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
 })
 export class CustomSnackbarComponent implements OnInit {
 
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) { }
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any,
+  private _snackRef: MatSnackBarRef<any>,
+  ) { }
 
   ngOnInit(): void {
+  }
+  closeSnackbar()
+  {
+    this._snackRef.dismiss();
   }
 
 }

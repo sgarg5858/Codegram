@@ -1,2 +1,13 @@
 
-<span>{{data}}</span>
+<div class="row" style="display: flex;flex-direction: row;">
+   <div class="col-10" style="font-size: 14px;margin-top: 10px;">
+    <span >{{data}}</span>
+   </div>
+   <div class="col-2" style="width: 100%;display: flex;flex-direction: row-reverse;" >
+    <button  mat-icon-button (click)="closeSnackbar()" style="outline: none;">
+        <mat-icon>
+            close
+        </mat-icon>
+    </button>
+   </div>
+</div>
