@@ -207,7 +207,14 @@ export class ProfileInfoComponent implements OnInit {
   onSave()
   {
     console.log(this.profileInfoForm.value);
-    this.profileService.saveProfileData(this.profileInfoForm.value);
+    if(!this.editMode)
+    {
+      this.profileService.saveProfileData(this.profileInfoForm.value);
+    }else
+    {
+      console.log("Update function to be pending");
+      this.profileService.updateProfile(this.profileInfoForm.value);
+    }
 
   }
 

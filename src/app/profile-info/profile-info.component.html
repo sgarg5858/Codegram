@@ -124,7 +124,7 @@
                </div>
            </mat-expansion-panel>
                     <button style="margin-top: 10px;" mat-raised-button color="primary" (click)="onSave()">
-                        Save
+                        {{editMode? 'Update':'Save'}}
                     </button>
                 </form>
             </mat-card>

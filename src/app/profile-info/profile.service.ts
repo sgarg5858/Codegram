@@ -52,5 +52,23 @@ export class ProfileService {
       })
     })
   }
-
+  updateProfile(updatedProfile)
+  {
+    const profiles=Object.values(this.profiles);
+    console.log(profiles);
+    const updatedProfiles=profiles.map((profile:any)=>profile.email==updatedProfile.email?updatedProfile:profile);
+    console.log(updatedProfiles);
+    let token=null;
+    this.authService.userDataChanged.pipe(take(1)).subscribe((user:User)=>{
+      
+      token=user.token;
+      console.log(token);
+    console.log(updatedProfiles);
+      this.http.put(`https://devgram-e39dd.firebaseio.com/users.json?auth=${token}`,updatedProfiles).subscribe((profiles)=>{
+        console.log(profiles);
+        this.profiles=profiles;
+        this.profilesChanged.next({...this.profiles});
+      })
+    })
+  }
 }
