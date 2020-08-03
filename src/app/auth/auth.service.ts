@@ -21,6 +21,12 @@ export class AuthService {
 
   autoLogoutTimer:any;
   userDataChanged = new BehaviorSubject<User>(null);
+  userToken=null;
+ 
+  getUserToken()
+  {
+    return this.userToken;
+  }
 
   constructor(private http:HttpClient,private router:Router) { }
 
@@ -75,6 +81,7 @@ export class AuthService {
     {
       clearTimeout(this.autoLogoutTimer);
     }
+    this.userToken=null;
     this.userDataChanged.next(null);
     localStorage.removeItem('userData');
     this.router.navigate(['/login']);
@@ -97,6 +104,7 @@ export class AuthService {
 
     if(loadedUser.token)
     {
+      this.userToken=loadedUser.token;
       this.userDataChanged.next(loadedUser);
       this.router.navigate(['/profile']);
       const timeLeft=new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();

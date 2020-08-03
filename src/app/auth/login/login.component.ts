@@ -47,8 +47,10 @@ export class LoginComponent implements OnInit,OnDestroy {
       
       const expirationDate=new Date(new Date().getTime()+ (+response.expiresIn*1000));
       const user= new User(response.email,response.localId,response.idToken,expirationDate);
-
+      
+      this.authService.userToken=response.idToken;
       this.authService.userDataChanged.next(user);
+
       //for auto logout
       this.authService.autoLogout(+response.expiresIn*1000);
       

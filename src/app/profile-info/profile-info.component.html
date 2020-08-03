@@ -123,8 +123,15 @@
                    <button color="primary" type="button" mat-raised-button (click)="addSkill()">Add Skill</button>
                </div>
            </mat-expansion-panel>
-                    <button style="margin-top: 10px;" mat-raised-button color="primary" (click)="onSave()">
-                        {{editMode? 'Update':'Save'}}
+                    <button 
+                    [class.spinner]="updateLoading"
+                    [disabled]="updateLoading"
+                    style="margin-top: 10px;" 
+                    mat-raised-button 
+                    color="primary"
+                    (click)="onSave()"
+                    >
+                    {{editMode? 'Update':'Save'}}
                     </button>
                 </form>
             </mat-card>
