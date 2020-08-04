@@ -20,14 +20,7 @@ export class ProfileService {
   saveProfileData(data)
   {
     let token=this.authService.getUserToken();
-      this.http.post(`https://devgram-e39dd.firebaseio.com/users.json?auth=${token}`,data).subscribe((response)=>{
-        console.log(response);
-       
-        this.router.navigate(['profile']);
-        
-      },(error)=>{
-        
-      })
+     return this.http.post(`https://devgram-e39dd.firebaseio.com/users.json?auth=${token}`,data);
   }
 
   getProfiles()

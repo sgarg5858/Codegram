@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit,OnDestroy {
       console.log(this.userProfiles);
       this.userProfile=this.userProfiles.filter(profile=>profile.email==this.userEmail)[0];
       console.log(this.userProfile);
-      this.isLoading=false;
+       this.isLoading=false;
 
     },(error)=>{
       this.isError=true;

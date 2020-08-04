@@ -220,7 +220,22 @@ export class ProfileInfoComponent implements OnInit,OnDestroy {
     console.log(this.profileInfoForm.value);
     if(!this.editMode)
     {
-      this.profileService.saveProfileData(this.profileInfoForm.value);
+      this.updateError=false;
+      this.updateLoading=true;
+      this.profileService.saveProfileData(this.profileInfoForm.value).subscribe((response)=>{
+        console.log(response);
+        this.updateLoading=false;
+        this.router.navigate(['profile']);
+        this.snackbar.openFromComponent(CustomSnackbarComponent,{
+          data:'Profile created successfully.',
+          duration:3000
+        })
+        
+      },(error)=>{
+        this.updateLoading=false;
+        this.updateError=true;
+        console.log(error);
+      })
     }else
     {
       this.updateError=false;
