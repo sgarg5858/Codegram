@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProfileService } from '../profile-info/profile.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profiles',
@@ -9,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class ProfilesComponent implements OnInit,OnDestroy {
 
-  constructor(private profileService:ProfileService) { }
+  constructor(private profileService:ProfileService,private router:Router) { }
   profilesSubscription:Subscription;
   userProfiles:any[]=[];
   isLoading=true;
@@ -25,13 +26,19 @@ export class ProfilesComponent implements OnInit,OnDestroy {
     })
   }
 
-  
+
   ngOnDestroy()
   {
     if(this.profilesSubscription)
     {
       this.profilesSubscription.unsubscribe();
     }
+  }
+  showProfile(i)
+  {
+    this.profileService.selectedProfile.next(this.userProfiles[i]);
+    this.router.navigate(['profile',i]);
+    
   }
 
 }

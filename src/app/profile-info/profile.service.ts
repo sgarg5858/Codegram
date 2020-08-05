@@ -15,6 +15,7 @@ export class ProfileService {
   profilesChanged=new Subject<any>();
   profiles:any;
   userProfile=new BehaviorSubject<any>(null);
+  selectedProfile=new BehaviorSubject<any>(null);
   
 
   saveProfileData(data)

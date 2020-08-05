@@ -7,7 +7,8 @@
              </mat-card>
             <mat-card style="margin-top: 10vh;" *ngIf="userProfile && !isLoading">
                <div style="display: flex;flex-direction: column;align-items: center;">
-                <ngx-avatar [size]="180" githubId="sgarg5858"></ngx-avatar>
+                <ngx-avatar [size]="180" [githubId]="userProfile.githubName" *ngIf="userProfile.githubName"></ngx-avatar>
+                <ngx-avatar [size]="180" *ngIf="!userProfile.githubName" [name]="userProfile.name" bgColor="#1442bc"></ngx-avatar>
                 <button (click)="onEdit()" mat-raised-button style="margin-top: 5vh;"  color="primary">Edit Profile</button>
                </div>
                
