@@ -1,23 +1,26 @@
 <div class="container-fluid" style="min-height: 90vh;width: 100vw;background-color: #1449b2;">
     <div  class="row">
-        <div class="col-12">
+        <div class="col-10 offset-1">
             <mat-card style="border-radius: 10px;min-height: 80vh;margin-top: 5vh;">
-                <div class="row" *ngIf="userProfile" >
-                    <div class="col-lg-4 col-md-5 col-sm-6" >
-                        <ngx-avatar [githubId]="userProfile.githubName" [size]="180" *ngIf="userProfile.githubName"></ngx-avatar>
-                        <ngx-avatar [name]="userProfile.name" [size]="180" *ngIf="!userProfile.githubName"></ngx-avatar>
-                        <p style="font-size: 30px;font-weight: 400;margin-top: 20px;margin-left: 12px;">{{userProfile.name}}</p>
-                        <p style="font-size: 20px;font-weight: 400;margin-top: 15px;margin-left: 12px;">{{userProfile.jobTitle}}</p>
-                        <p style="font-size: 20px;font-weight: 400;margin-top: 10px;margin-left: 12px;">{{userProfile.location}}</p>
+                <div class="row" style="justify-content: center;" *ngIf="userProfile" >
+                    
+                        <ngx-avatar [githubId]="userProfile.githubName" [size]="200" *ngIf="userProfile.githubName"></ngx-avatar>
+                        <ngx-avatar [name]="userProfile.name" [size]="200" *ngIf="!userProfile.githubName"></ngx-avatar>
                     </div>
-                    <div class="col-lg-6 offset-lg-2 col-md-6  offset-md-1 col-sm-6">
-                        <div class="col-lg-4 col-sm-4 col-md-6 col-xs-12"  *ngFor="let skill of userProfile.skills">
-                            <mat-card >
-                                <span>{{skill.skill}}</span>
-                            </mat-card>
-                        </div>
-                      
-                    </div>
+                    <div class="row" style="display: flex;flex-direction: column;justify-content: center;align-items: center;align-content: center;"> 
+                        <p style="font-size: 30px;font-weight: 400;margin-top: 20px;">{{userProfile.name}}</p>
+                        <p style="font-size: 20px;font-weight: 400;margin-top: 15px;">{{userProfile.jobTitle}}</p>
+                        <p style="font-size: 20px;font-weight: 400;margin-top: 10px;">{{userProfile.location}}</p>
+                        <p style="font-size: 30px;font-weight: 400;margin-top: 12px;color: #1449b2;">Skills</p>
+                    </div> 
+                  
+                <div class="row" >
+                   
+                 <div class="col-lg-3 col-sm-4 col-md-4 col-xs-12"  *ngFor="let skill of userProfile.skills">
+                     <mat-card style="margin-top: 10px;border-radius: 20px;background-color: #1449b2;color: #96ffca;text-align: center;font-size: 16px;">
+                         <span>{{skill.skill}}</span>
+                     </mat-card>
+                 </div>
                 </div>
             </mat-card>
         </div>
