@@ -18,6 +18,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {HttpClientModule} from '@angular/common/http' 
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { AppComponent } from './app.component';
 import {ProfileInfoComponent} from './profile-info/profile-info.component';
@@ -49,7 +50,7 @@ import { ProfileDetailComponent } from './profiles/profile-detail/profile-detail
     FormsModule,ReactiveFormsModule,MatFormFieldModule,MatInputModule,MatIconModule,MatButtonModule,
     MatCardModule,MatDialogModule,MatExpansionModule,MatPaginatorModule,MatListModule,
     MatSidenavModule,MatSlideToggleModule,MatSnackBarModule,HttpClientModule,MatToolbarModule,
-    AvatarModule
+    AvatarModule,MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

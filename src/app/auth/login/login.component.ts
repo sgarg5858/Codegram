@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit,OnDestroy {
       this.isUserAuthenticated = user !=null;
       if(this.isUserAuthenticated)
       {
-        this.router.navigate(['profile']);
+        this.router.navigate(['community']);
       }
     })
   }

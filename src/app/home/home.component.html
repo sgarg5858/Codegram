@@ -5,15 +5,73 @@
                 <div style="margin-top: 10vh;" class="lds-ripple"><div></div><div></div></div>
                 
              </mat-card>
-            <mat-card style="margin-top: 10vh;" *ngIf="userProfile && !isLoading">
-               <div style="display: flex;flex-direction: column;align-items: center;">
-                <ngx-avatar [size]="180" [githubId]="userProfile.githubName" *ngIf="userProfile.githubName"></ngx-avatar>
-                <ngx-avatar [size]="180" *ngIf="!userProfile.githubName" [name]="userProfile.name" bgColor="#1442bc"></ngx-avatar>
-                <button (click)="onEdit()" mat-raised-button style="margin-top: 5vh;"  color="primary">Edit Profile</button>
-               </div>
-               
-                   
-            </mat-card>
+                        <mat-card style="border-radius: 10px;min-height: 80vh;margin-top: 5vh;" *ngIf="userProfile && !isLoading">
+                            <div style="display: flex;flex-direction: row-reverse;">
+                                <button 
+                                (click)="onEdit()" 
+                                mat-icon-button 
+                                style="margin-top: 5vh;" 
+                                matTooltip="update your profile" 
+                                color="primary">
+                                <mat-icon>
+                                    edit
+                                </mat-icon>
+                                </button>
+                            </div>
+                            <div class="row" style="justify-content: center;" *ngIf="userProfile" >
+                                
+                                    <ngx-avatar [githubId]="userProfile.githubName" [size]="200" *ngIf="userProfile.githubName"></ngx-avatar>
+                                    <ngx-avatar [name]="userProfile.name" [size]="200" *ngIf="!userProfile.githubName"></ngx-avatar>
+                                </div>
+                                <div class="row" style="display: flex;flex-direction: column;justify-content: center;align-items: center;align-content: center;"> 
+                                    <p style="font-size: 30px;font-weight: 400;margin-top: 20px;">{{userProfile.name}}</p>
+                                    <p style="font-size: 20px;font-weight: 400;margin-top: 15px;">{{userProfile.jobTitle}}</p>
+                                    <p style="font-size: 20px;font-weight: 400;margin-top: 10px;">{{userProfile.location}}</p>
+                                    <p style="font-size: 30px;font-weight: 400;margin-top: 12px;color: #1449b2;">Skills</p>
+                                </div> 
+                              
+                            <div class="row">
+                                <div class="col-lg-3 col-sm-4 col-md-4 col-xs-12"  *ngFor="let skill of userProfile.skills">
+                                    <mat-card style="margin-top: 10px;border-radius: 20px;background-color: #1449b2;color: #96ffca;text-align: center;font-size: 16px;">
+                                        <span>{{skill.skill}}</span>
+                                    </mat-card>
+                                </div>
+                            </div>
+                           
+                            <div class="row" style="margin-top: 10px;">
+                                
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div  
+                                    align="center"
+                                    style="font-size: 30px;font-weight: 400;margin-top: 20px;color: #1449b2"
+                                    >Educations
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngFor="let education of userProfile.educations">
+                                        <mat-card style="background-color: #1449b2;color: #96ffca;width: 100%;margin-top: 15px;">
+                                            <p>{{education.school}}</p>
+                                            <p>{{education.degree}}</p>
+                                            <p>{{education.from | date: 'shortDate'}}  -  {{education.present?"Present":education.to | date: 'shortDate'}}</p>
+                                        </mat-card>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div 
+                                    align="center"
+                                    style="font-size: 30px;font-weight: 400;margin-top: 20px;color: #1449b2;"
+                                    >Experiences
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" *ngFor="let experience of userProfile.experiences">
+                                        <mat-card style="background-color: #1449b2;color: #96ffca;width: 100%;margin-top: 15px;">
+                                            <p>{{experience.company}}</p>
+                                            <p>{{experience.jobTitle}}</p>
+                                            <p>{{experience.from | date: 'shortDate'}}  -  {{experience.present?"Present":experience.to | date: 'shortDate'}}</p>
+                                        </mat-card>
+                                    </div>
+                                </div>
+                              
+                            </div>
+            
+                        </mat-card>
             <mat-card style="margin-top: 10vh;" *ngIf="!userProfile && !isLoading">
                <div style="display: flex;flex-direction: column;justify-content: center;align-content: center;align-items: center;">
                 <ngx-avatar [size]="180" githubId="null"></ngx-avatar>

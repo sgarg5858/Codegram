@@ -12,12 +12,16 @@ const routes: Routes = [
   {path:'login',component:LoginComponent,pathMatch:'full'},
   {path:'signup',component:SignUpComponent,pathMatch:'full'},
   {path:'reset-password',component:ForgotPasswordComponent,pathMatch:'full'},
-  {path:'profile',component:HomeComponent,pathMatch:'full',canActivate:[AuthGuardService]},
+
+  {path:'community',component:ProfilesComponent,canActivate:[AuthGuardService]},
+
+  {path:'profile',component:HomeComponent,canActivate:[AuthGuardService]},
+
    {path:'create-profile',component:ProfileInfoComponent,pathMatch:'full',canActivate:[AuthGuardService]},
    {path:'edit-profile',component:ProfileInfoComponent,pathMatch:'full',canActivate:[AuthGuardService]},
-  {path:'community',component:ProfilesComponent,pathMatch:'full',canActivate:[AuthGuardService]},
+  
   {path:'profile/:id',component:ProfileDetailComponent,pathMatch:'full',canActivate:[AuthGuardService]},
-  {path:'',redirectTo:'community',pathMatch:'full'},
+  {path:'**',redirectTo:'community',pathMatch:'full'}
   // {path:'**',redirectTo:'login'}
 ];
 

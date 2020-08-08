@@ -57,7 +57,7 @@ export class SignUpComponent implements OnInit,OnDestroy {
       //for auto login so that when we reload the browser or page we can fetch
       localStorage.setItem('userData',JSON.stringify(user));
 
-      this.router.navigate(['/profile']);
+      this.router.navigate(['community']);
 
 
     },(error)=>{
