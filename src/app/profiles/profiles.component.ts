@@ -5,17 +5,9 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { pairwise } from 'rxjs/operators';
 
-export interface profile{
-  educations:[],
-  skills:[],
-  experiences:[],
-  email:string,
-  githubName:string,
-  location:string,
-  name:string
-
-}
+// 
 
 @Component({
   selector: 'app-profiles',
@@ -29,10 +21,7 @@ export class ProfilesComponent implements OnInit,OnDestroy {
   userProfiles:any[]=[];
   isLoading=true;
   searchForm:FormGroup;
-  profilesData:profile[];
-  dataSource:MatTableDataSource<profile>;
-  obs: Observable<any>;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  filteredProfiles:any[]=[];
 
   ngOnInit(): void {
     this.searchForm=new FormGroup({
@@ -44,11 +33,7 @@ export class ProfilesComponent implements OnInit,OnDestroy {
       this.userProfiles=Object.values(profiles);
       this.userProfiles=this.userProfiles.filter(profile=>profile!=null);
       console.log(this.userProfiles);
-      this.profilesData=this.userProfiles;
-      this.dataSource=new MatTableDataSource<profile>(this.profilesData);
-      // this.changeDetectorRef.detectChanges();
-      this.dataSource.paginator = this.paginator;
-      this.obs = this.dataSource.connect();
+      this.filteredProfiles=this.userProfiles;
       this.isLoading=false;
       this.changesOfField();
     })
@@ -56,9 +41,13 @@ export class ProfilesComponent implements OnInit,OnDestroy {
 
   changesOfField()
   {
-    this.searchForm.get('searchProfiles').valueChanges.subscribe(val => {
-     this.filterDevelopers();
-    });
+    // this.searchForm.get('searchProfiles').valueChanges.subscribe(val => {
+    //  this.filterDevelopers();
+    // });
+    this.searchForm.get('searchProfiles')
+  .valueChanges
+  .pipe(pairwise())
+  .subscribe(([prev, next]: [any, any]) => this.filterDevelopers(next) );
   }
 
   ngOnDestroy()
@@ -67,9 +56,7 @@ export class ProfilesComponent implements OnInit,OnDestroy {
     {
       this.profilesSubscription.unsubscribe();
     }
-    if (this.dataSource) { 
-      this.dataSource.disconnect(); 
-    }
+   
   }
   showProfile(i)
   {
@@ -77,11 +64,14 @@ export class ProfilesComponent implements OnInit,OnDestroy {
     this.router.navigate(['profile',i]);
     
   }
-  filterDevelopers()
+  filterDevelopers(val)
   {
-    this.dataSource.filter=this.searchForm.value.searchProfiles.trim().toLowerCase();
-    console.log(this.searchForm.value.searchProfiles);
-    console.log(this.dataSource.data);
+    const value=val;
+   this.filteredProfiles=this.userProfiles.filter(profile=>{
+     return profile.name.includes(value) ||  profile.location.includes(value) ||  profile.jobTitle.includes(value)
+   })
+  
   }
+  
 
 }
