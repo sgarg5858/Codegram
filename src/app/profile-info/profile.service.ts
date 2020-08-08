@@ -12,8 +12,8 @@ export class ProfileService {
 
   constructor(private http:HttpClient,private authService:AuthService,private router:Router) { }
   userSubscription:Subscription;
-  profilesChanged=new Subject<any>();
-  profiles:any;
+  profilesChanged=new BehaviorSubject<any>(null);
+  public profiles:any=null;
   userProfile=new BehaviorSubject<any>(null);
   selectedProfile=new BehaviorSubject<any>(null);
   

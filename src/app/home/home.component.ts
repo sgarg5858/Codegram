@@ -24,12 +24,15 @@ export class HomeComponent implements OnInit,OnDestroy {
     this.profileService.getProfiles();
     this.profilesSubscription=this.profileService.profilesChanged.subscribe((profiles)=>{
 
+     if(profiles!=null)
+     {
       this.userProfiles=Object.values(profiles);
       console.log(this.userProfiles);
       this.userProfiles=this.userProfiles.filter(profile=>profile!=null);
       this.userProfile=this.userProfiles.find(profile=> profile.email==this.userEmail);
       console.log(this.userProfile);
        this.isLoading=false;
+     }
 
     },(error)=>{
       this.isError=true;

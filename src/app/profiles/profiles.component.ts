@@ -25,7 +25,10 @@ export class ProfilesComponent implements OnInit,OnDestroy {
     this.searchForm=new FormGroup({
       searchProfiles:new FormControl('')
     })
+   if(this.profileService.profiles==null)
+   {
     this.profileService.getProfiles();
+   }
     this.profilesSubscription=this.profileService.profilesChanged.subscribe((profiles:any[])=>{
       //Firebase returns an object
       this.userProfiles=Object.values(profiles);
