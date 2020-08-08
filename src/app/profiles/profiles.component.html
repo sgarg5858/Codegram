@@ -8,7 +8,7 @@
         </form>
     </div>
     <div class="row" style="min-height: 72vh;margin-bottom: 10px;width: 96vw;">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 5vh;" *ngFor="let profile of filteredProfiles">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 5vh;" *ngFor="let profile of filteredProfiles;let i=index">
                 <mat-card style="display: flex;flex-direction: column;align-items: center;">
                     <ngx-avatar [githubId]="profile.githubName" [size]="150" *ngIf="profile.githubName"></ngx-avatar>
                     <ngx-avatar [name]="profile.name" [size]="150" *ngIf="!profile.githubName"></ngx-avatar>
@@ -18,9 +18,9 @@
                         <span><mat-icon style="color: cornflowerblue;">location_on</mat-icon></span>
                         <span style="font-size: 15px;font-weight: 400;height: 100%;">{{profile.location}}</span>
                     </p>
-                    <!-- <button mat-raised-button color="primary"(click)="showProfile(i)">
+                    <button mat-raised-button color="primary"(click)="showProfile(i)">
                         show Profile
-                    </button> -->
+                    </button>
                 </mat-card>
             </div>
     </div>

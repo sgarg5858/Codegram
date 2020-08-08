@@ -41,9 +41,6 @@ export class ProfilesComponent implements OnInit,OnDestroy {
 
   changesOfField()
   {
-    // this.searchForm.get('searchProfiles').valueChanges.subscribe(val => {
-    //  this.filterDevelopers();
-    // });
     this.searchForm.get('searchProfiles')
   .valueChanges
   .pipe(pairwise())
@@ -60,7 +57,7 @@ export class ProfilesComponent implements OnInit,OnDestroy {
   }
   showProfile(i)
   {
-    this.profileService.selectedProfile.next(this.userProfiles[i]);
+    this.profileService.selectedProfile.next(this.filteredProfiles[i]);
     this.router.navigate(['profile',i]);
     
   }
