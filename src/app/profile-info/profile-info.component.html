@@ -125,7 +125,7 @@
            </mat-expansion-panel>
                     <button 
                     [class.spinner]="updateLoading"
-                    [disabled]="updateLoading"
+                    [disabled]="updateLoading || !profileInfoForm.valid"
                     style="margin-top: 10px;" 
                     mat-raised-button 
                     color="primary"

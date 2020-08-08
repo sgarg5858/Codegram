@@ -19,21 +19,30 @@ export class ProfileInfoComponent implements OnInit,OnDestroy {
     private snackbar:MatSnackBar
     )
      { }
+  //form group   
   profileInfoForm:FormGroup;
+  //managing expansion panels...
   experiencepanelState = false;
   educationpanelState = false;
   skillpanelState = false;
+  //managing present variables for experience and education
   experiencePresent=[];
   educationPresent=[];
+  //check whether user is new or user is just updating its own existing profile
   editMode=false;
+  //managing subscriptions
   userProfileSubscription:Subscription;
-  userProfile:any;
   updateProfileSubscription:Subscription;
+  //if in edit mode then we use this;
+  userProfile:any;
+  //for snackbar loading
   updateLoading=false;
+  //if any error;
   updateError=false;
 
   ngOnInit(): void {
 
+    //checking here whether we are in edit mode or create mode by getting path...
     if(window.location.href)
     {
       if(window.location.href.split('/')[3]==='edit-profile')
@@ -62,7 +71,7 @@ export class ProfileInfoComponent implements OnInit,OnDestroy {
       this.profileInfoForm=new FormGroup({
       name:new FormControl(this.userProfile.name,[Validators.required]),
       location:new FormControl(this.userProfile.location,[Validators.required]),
-      githubName:new FormControl(this.userProfile.githubName,[Validators.required]),
+      githubName:new FormControl(this.userProfile.githubName),
       email:new FormControl((this.userProfile.email)),
       jobTitle:new FormControl(this.userProfile.jobTitle,Validators.required),
       experiences: new FormArray([]),
@@ -84,6 +93,7 @@ export class ProfileInfoComponent implements OnInit,OnDestroy {
             jobTitle:new FormControl(experience.jobTitle,Validators.required)
           })
         )
+        this.experiencePresent.push(experience.present);
       }
      }
      if(this.userProfile.educations)
@@ -100,6 +110,7 @@ export class ProfileInfoComponent implements OnInit,OnDestroy {
             degree:new FormControl(education.degree,Validators.required)
           })
         )
+        this.educationPresent.push(education.present);
       }
      }
      if(this.userProfile.skills)
@@ -120,7 +131,7 @@ export class ProfileInfoComponent implements OnInit,OnDestroy {
       this.profileInfoForm=new FormGroup({
         name:new FormControl('',[Validators.required]),
         location:new FormControl('',[Validators.required]),
-        githubName:new FormControl('',[Validators.required]),
+        githubName:new FormControl('',),
         email:new FormControl((JSON.parse(localStorage.getItem('userData')).email)),
         jobTitle:new FormControl('',Validators.required),
         experiences: new FormArray([]),

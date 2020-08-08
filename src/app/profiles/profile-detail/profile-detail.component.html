@@ -14,7 +14,7 @@
                         <p style="font-size: 30px;font-weight: 400;margin-top: 12px;color: #1449b2;">Skills</p>
                     </div> 
                   
-                <div class="row">
+                <div class="row" *ngIf="userProfile.skills.length > 0">
                     <div class="col-lg-3 col-sm-4 col-md-4 col-xs-12"  *ngFor="let skill of userProfile.skills">
                         <mat-card style="margin-top: 10px;border-radius: 20px;background-color: #1449b2;color: #96ffca;text-align: center;font-size: 16px;">
                             <span>{{skill.skill}}</span>
@@ -24,7 +24,7 @@
                
                 <div class="row" style="margin-top: 10px;">
                     
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" *ngIf="userProfile.educations">
                         <div  
                         align="center"
                         style="font-size: 30px;font-weight: 400;margin-top: 20px;color: #1449b2"
@@ -38,7 +38,7 @@
                             </mat-card>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" *ngIf="userProfile.experiences">
                         <div 
                         align="center"
                         style="font-size: 30px;font-weight: 400;margin-top: 20px;color: #1449b2;"
