@@ -3,8 +3,6 @@ import { ProfileService } from '../profile-info/profile.service';
 import { Subscription, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { pairwise } from 'rxjs/operators';
 
 // 
@@ -63,9 +61,9 @@ export class ProfilesComponent implements OnInit,OnDestroy {
   }
   filterDevelopers(val)
   {
-    const value=val;
+    const value=val.toLowerCase();
    this.filteredProfiles=this.userProfiles.filter(profile=>{
-     return profile.name.includes(value) ||  profile.location.includes(value) ||  profile.jobTitle.includes(value)
+     return profile.name.toLowerCase().includes(value) ||  profile.location.toLowerCase().includes(value) ||  profile.jobTitle.toLowerCase().includes(value)
    })
   
   }

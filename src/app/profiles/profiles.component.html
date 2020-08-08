@@ -3,20 +3,26 @@
         <form  [formGroup]="searchForm">
             <mat-form-field  style="color: #96ffca;">
                 <input    style="color: #96ffca;" matInput type="text" formControlName="searchProfiles">
-                <mat-placeholder style="color: #96ffca;" class="placeholder">Search Developers</mat-placeholder>
+                <mat-placeholder style="color: #96ffca;" class="placeholder">Search by name,location..</mat-placeholder>
             </mat-form-field>
         </form>
     </div>
-    <div class="row" style="min-height: 72vh;margin-bottom: 10px;width: 96vw;">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 5vh;" *ngFor="let profile of filteredProfiles;let i=index">
+    <div class="row" style="min-height: 72vh;margin-bottom: 10px;min-width: 96vw;">
+        <div class="col-4 offset-4" style="color: #96ffca;font-size: 40px;margin-top: 10vh;"  align="center"  *ngIf="isLoading ">
+            Fetching Profiles...
+        </div>
+        <div class="col-4 offset-4" style="color: #96ffca;font-size: 35px;margin-top: 10vh;"  align="center"  *ngIf="!isLoading && filteredProfiles.length==0">
+            No profiles found.
+        </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 5vh;" *ngFor="let profile of filteredProfiles;let i=index" >
                 <mat-card style="display: flex;flex-direction: column;align-items: center;">
                     <ngx-avatar [githubId]="profile.githubName" [size]="150" *ngIf="profile.githubName"></ngx-avatar>
                     <ngx-avatar [name]="profile.name" [size]="150" *ngIf="!profile.githubName"></ngx-avatar>
                     <p style="margin-top: 15px;font-size: 24px;font-weight: 400;" >{{profile.name}}</p>
                     <p style="margin-top: 20px;font-size: 18px;font-weight: 400;" *ngIf="profile.jobTitle">{{profile.jobTitle}}</p>
                     <p *ngIf="profile.location">
-                        <span><mat-icon style="color: cornflowerblue;">location_on</mat-icon></span>
-                        <span style="font-size: 15px;font-weight: 400;height: 100%;">{{profile.location}}</span>
+                        <span style="font-size: 15px;font-weight: 400;height: 100%;">
+                            {{profile.location}}</span>
                     </p>
                     <button mat-raised-button color="primary"(click)="showProfile(i)">
                         show Profile
