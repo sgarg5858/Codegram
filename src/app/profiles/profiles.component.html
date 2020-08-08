@@ -7,14 +7,14 @@
             </mat-form-field>
         </form>
     </div>
-    <div class="row" style="min-height: 72vh;margin-bottom: 10px;min-width: 96vw;">
-        <div class="col-4 offset-4" style="color: #96ffca;font-size: 40px;margin-top: 10vh;"  align="center"  *ngIf="isLoading ">
-            Fetching Profiles...
+    <div class="row" style="min-height: 72vh;margin-bottom: 10px;">
+        <div class="col-4 offset-4" style="color: #96ffca;font-size: 40px;margin-top: 10vh;min-height: 20vh;"  align="center"  *ngIf="isLoading ">
+            Fetching...
         </div>
         <div class="col-4 offset-4" style="color: #96ffca;font-size: 35px;margin-top: 10vh;"  align="center"  *ngIf="!isLoading && filteredProfiles.length==0">
             No profiles found.
         </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="margin-top: 5vh;" *ngFor="let profile of filteredProfiles;let i=index" >
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-top: 5vh;" *ngFor="let profile of filteredProfiles;let i=index" >
                 <mat-card style="display: flex;flex-direction: column;align-items: center;">
                     <ngx-avatar [githubId]="profile.githubName" [size]="150" *ngIf="profile.githubName"></ngx-avatar>
                     <ngx-avatar [name]="profile.name" [size]="150" *ngIf="!profile.githubName"></ngx-avatar>
