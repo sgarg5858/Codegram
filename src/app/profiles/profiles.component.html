@@ -1,17 +1,19 @@
 <div class="container-fluid" style="min-height: 90vh;width:100vw;background-color: #1442bc;padding-bottom: 50px;">
     <div class="row" style="justify-content: center;">
-        <form  [formGroup]="searchForm">
-            <mat-form-field  style="color: #96ffca;">
+        <form  [formGroup]="searchForm" style="margin-top: 20px;">
+            <mat-form-field  style="color: #96ffca;width: 250px;">
                 <input    style="color: #96ffca;" matInput type="text" formControlName="searchProfiles">
                 <mat-placeholder style="color: #96ffca;" class="placeholder">Search by name,location..</mat-placeholder>
             </mat-form-field>
         </form>
     </div>
     <div class="row" style="min-height: 72vh;margin-bottom: 10px;">
-        <div class="col-4 offset-4" style="color: #96ffca;font-size: 40px;margin-top: 10vh;min-height: 20vh;"  align="center"  *ngIf="isLoading ">
+        <div class="col-lg-4 offsetlg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-10 offset-xs-1"
+         style="color: #96ffca;font-size: 40px;margin-top: 10vh;min-height: 40vh;"  align="center"  *ngIf="isLoading ">
             Fetching...
         </div>
-        <div class="col-4 offset-4" style="color: #96ffca;font-size: 35px;margin-top: 10vh;"  align="center"  *ngIf="!isLoading && filteredProfiles.length==0">
+        <div class="col-lg-4 offsetlg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-10 offset-xs-1"
+         style="color: #96ffca;font-size: 35px;margin-top: 10vh;min-height: 40vh;"  align="center"  *ngIf="!isLoading && filteredProfiles.length==0">
             No profiles found.
         </div>
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin-top: 5vh;" *ngFor="let profile of filteredProfiles;let i=index" >

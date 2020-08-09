@@ -4,17 +4,17 @@
             <mat-card style="margin-top: 50px;background-color: white;width: 100%;display: flex;flex-direction: column;align-content: center;justify-content: center;align-items: center;">
                 <form  [formGroup]="profileInfoForm" style="display: flex;flex-direction: column;align-content: center;justify-content: center;align-items: center;">
                     <mat-form-field style="width: 250px;">
-                        <input matInput placeholder="Enter your name" type="text" formControlName="name">
+                        <input matInput placeholder="Enter your name**" type="text" formControlName="name">
                     </mat-form-field>
                     <mat-form-field style="width: 250px;margin-top:2vh">
                         <input matInput placeholder="Enter your github username" type="text" formControlName="githubName">
                         <mat-hint>We will use your github username to get profile picture.</mat-hint>
                     </mat-form-field>
                     <mat-form-field style="width: 250px;margin-top:3vh">
-                        <input matInput placeholder="Your Location" placeholder="e.g Pune,India" type="text" formControlName="location">
+                        <input matInput placeholder="Your Location**" placeholder="e.g Pune,India" type="text" formControlName="location">
                     </mat-form-field>
                     <mat-form-field style="width: 250px;margin-top: 2vh;">
-                        <input matInput placeholder="Your bio, about your profile." type="text" formControlName="jobTitle">
+                        <input matInput placeholder="Your bio, about your profile**" type="text" formControlName="jobTitle">
                     </mat-form-field>
 
                     <mat-expansion-panel style="margin-top: 2vh;" (opened)="experiencepanelState = true"

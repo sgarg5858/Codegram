@@ -34,11 +34,13 @@ export class ProfileService {
         this.profilesChanged.next({...this.profiles});
       })
   }
-  updateProfile(updatedProfile)
+  updateProfile(updatedProfile:{email})
   {
+    console.log(updatedProfile);
     const profiles=Object.values(this.profiles);
     console.log(profiles);
-    const updatedProfiles=profiles.map((profile:any)=>profile.email==updatedProfile.email?updatedProfile:profile);
+    const updatedProfiles=profiles.map((curr:any)=>
+    { return curr.email==updatedProfile.email?updatedProfile:curr});
     console.log(updatedProfiles);
     
     let token=this.authService.getUserToken();

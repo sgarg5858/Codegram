@@ -31,12 +31,15 @@ export class ProfilesComponent implements OnInit,OnDestroy {
    }
     this.profilesSubscription=this.profileService.profilesChanged.subscribe((profiles:any[])=>{
       //Firebase returns an object
+     if(profiles!=null)
+     {
       this.userProfiles=Object.values(profiles);
       this.userProfiles=this.userProfiles.filter(profile=>profile!=null);
       console.log(this.userProfiles);
       this.filteredProfiles=this.userProfiles;
       this.isLoading=false;
       this.changesOfField();
+     }
     })
   }
 
